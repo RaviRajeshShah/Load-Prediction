@@ -1,0 +1,292 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Loan Default Prediction</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Loan Default Prediction using classification</h2>-->
+<!--    <br><br>-->
+<!--    <form action="" method="post">-->
+<!--        <label for="">Enter your age:</label>-->
+<!--        <input type="number" name="inp1">-->
+<!--        <br><br>-->
+<!--        <label for="">Enter your Income amount:</label>-->
+<!--        <input type="number" name="inp2">-->
+<!--        <br><br>-->
+<!--        <label for="">Enter your Loan amount:</label>-->
+<!--        <input type="number" name="inp3">-->
+<!--        <br><br>-->
+<!--        <label for="">Enter your loan Term:</label>-->
+<!--        <input type="number" name="inp4">-->
+<!--        <br><br>-->
+<!--        <label for="">Enter your Credit score:</label>-->
+<!--        <input type="number" name="inp5">-->
+<!--        <br><br>-->
+<!--        <label for="">Enter your Employment status: </label>-->
+<!--        <input type="text" name="inp6">-->
+<!--        <br><br>-->
+<!--        <label for="">Enter your Maritial Status:</label>-->
+<!--        <input type="text" name="inp7">-->
+<!--        <br><br>-->
+
+<!--        <label for="">Enter your PreviousDefaults:</label>-->
+<!--        <input type="number" name="inp8">-->
+<!--        <br><br>-->
+<!--        <br><br>-->
+<!--        <input type="submit">-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Default Prediction</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(135deg,#1e3c72,#2a5298);
+            overflow:hidden;
+        }
+
+        /* Background Animation */
+        body::before{
+            content:'';
+            position:absolute;
+            width:600px;
+            height:600px;
+            background:rgba(255,255,255,0.08);
+            border-radius:50%;
+            top:-150px;
+            left:-150px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        body::after{
+            content:'';
+            position:absolute;
+            width:500px;
+            height:500px;
+            background:rgba(255,255,255,0.05);
+            border-radius:50%;
+            bottom:-150px;
+            right:-150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float{
+            0%{
+                transform:translateY(0px);
+            }
+            50%{
+                transform:translateY(20px);
+            }
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+        .container{
+            width:450px;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+            padding:35px;
+            border-radius:20px;
+            box-shadow:0 8px 32px rgba(0,0,0,0.3);
+            color:white;
+            position:relative;
+            z-index:1;
+
+            animation:fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:25px;
+            font-size:28px;
+            letter-spacing:1px;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+        }
+
+        label{
+            margin-top:12px;
+            margin-bottom:5px;
+            font-size:15px;
+        }
+
+        input{
+            padding:12px;
+            border:none;
+            outline:none;
+            border-radius:10px;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        input:focus{
+            transform:scale(1.03);
+            box-shadow:0 0 10px rgba(255,255,255,0.7);
+        }
+
+        input[type="submit"]{
+            margin-top:25px;
+            background:#00c6ff;
+            background:linear-gradient(to right,#0072ff,#00c6ff);
+            color:white;
+            font-size:17px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.4s;
+        }
+
+        input[type="submit"]:hover{
+            transform:translateY(-3px) scale(1.05);
+            box-shadow:0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        input[type="submit"]:active{
+            transform:scale(0.98);
+        }
+
+        @media(max-width:500px){
+
+            .container{
+                width:90%;
+                padding:25px;
+            }
+
+            h2{
+                font-size:22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Loan Default Prediction</h2>
+
+        <form action="" method="post">
+
+            <!-- Age -->
+            <label>Enter your Age:</label>
+            <input type="number" name="inp1" required>
+
+            <!-- Income -->
+            <label>Enter your Income Amount:</label>
+            <input type="number" name="inp2" required>
+
+            <!-- Loan Amount -->
+            <label>Enter your Loan Amount:</label>
+            <input type="number" name="inp3" required>
+
+            <!-- Loan Term -->
+            <label>Select Loan Term:</label>
+            <select name="inp4" required>
+
+                <option value="">-- Select Loan Term --</option>
+
+                <option value="12">12 Months</option>
+                <option value="24">24 Months</option>
+                <option value="36">36 Months</option>
+                <option value="48">48 Months</option>
+                <option value="60">60 Months</option>
+
+            </select>
+
+            <!-- Credit Score -->
+            <label>Enter your Credit Score:</label>
+            <input type="number" name="inp5" required>
+
+            <!-- Employment Status -->
+            <label>Select Employment Status:</label>
+
+            <select name="inp6" required>
+
+                <option value="">-- Select Employment Status --</option>
+
+                <option value="Full-time">Full-time</option>
+
+                <option value="Part-time">Part-time</option>
+
+                <option value="Self-employed">Self-employed</option>
+
+                <option value="Other">Other</option>
+
+            </select>
+
+            <!-- Marital Status -->
+            <label>Select Marital Status:</label>
+
+            <select name="inp7" required>
+
+                <option value="">-- Select Marital Status --</option>
+
+                <option value="Divorced">Divorced</option>
+
+                <option value="Married">Married</option>
+
+                <option value="Single">Single</option>
+
+                <option value="Other">Other</option>
+
+            </select>
+
+            <!-- Previous Defaults -->
+            <label>Previous Loan Defaults:</label>
+
+            <select name="inp8" required>
+
+                <option value="">-- Select Option --</option>
+
+                <option value="0">No</option>
+
+                <option value="1">Yes</option>
+
+            </select>
+
+            <br><br>
+
+            <input type="submit" value="Predict Loan Status">
+
+        </form>
+
+    </div>
+
+</body>
+</html>
