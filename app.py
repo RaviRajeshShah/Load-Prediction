@@ -45,4 +45,4 @@ def home():
 
         return render_template('result.html',res1=res)
 
-# app.run(debug=True)
+app.run(debug=True)
